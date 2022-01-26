@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<doc>
+  <members>
+    <assembly>
+      <name>UnityEngine.UaaLAnalyticsModule</name>
+    </assembly>
+    <member name="A:UnityEngine.UaaLAnalyticsModule">
+      <summary>
+        <para>The UaaLAnalytics module gathers analytics data about \"Unity as a Library\" feature usage.</para>
+      </summary>
+    </member>
+  </members>
+</doc>
