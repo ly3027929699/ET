@@ -61,7 +61,7 @@ namespace ET
             return this.ThreadSynchronizationContext == null;
         }
 
-        protected void Get(long id, string address)
+        protected void GetinChannel(long id, string address)
         {
             if (!this.channels.TryGetValue(id, out _))
             {
@@ -99,7 +99,7 @@ namespace ET
 
                         this.channels[channel.Id] = channel;
 
-                        this.OnAccept(channel.Id, channel.RemoteAddress);
+                        this.OnAccept(channel.Id, channel.RemoteAddress.ToString());
                     }
                     catch (Exception e)
                     {
@@ -122,7 +122,7 @@ namespace ET
             }
         }
         
-        protected override void Get(long id, IPEndPoint address)
+        protected override void Get(long id, string address)
         {
             throw new NotImplementedException();
         }

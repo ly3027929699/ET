@@ -9,7 +9,7 @@ namespace ET
     {
         private const string relativeDirPrefix = "../Release";
 
-        public static string BuildFolder = "../Release/{0}/StreamingAssets/";
+        public static string BuildFolder = "../../Mirror-Test/Build/ET-P2P/ET_Data/StreamingAssets";
 
         public static void Build(PlatformType type, BuildAssetBundleOptions buildAssetBundleOptions, BuildOptions buildOptions, bool isBuildExe, bool isContainAB, bool clearFolder)
         {
@@ -34,7 +34,7 @@ namespace ET
                     break;
             }
 
-            string fold = string.Format(BuildFolder, type);
+            string fold = string.Format(BuildFolder);
 
             if (clearFolder && Directory.Exists(fold))
             {

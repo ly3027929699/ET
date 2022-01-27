@@ -116,4 +116,7 @@
     <ProjectReference Include="..\..\ThirdParty\ShareLib\ShareLib.csproj" />
     <ProjectReference Include="..\..\ThirdParty\UnityEngine\UnityEngine.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Module\NetworkSteam" />
+  </ItemGroup>
 </Project>

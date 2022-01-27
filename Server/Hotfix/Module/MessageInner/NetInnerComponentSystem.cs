@@ -76,7 +76,7 @@ namespace ET
         }
 
         // 这个channelId是由CreateAcceptChannelId生成的
-        public static void OnAccept(this NetInnerComponent self, long channelId, IPEndPoint ipEndPoint)
+        public static void OnAccept(this NetInnerComponent self, long channelId, string ipEndPoint)
         {
             Session session = self.AddChildWithId<Session, AService>(channelId, self.Service);
             session.RemoteAddress = ipEndPoint;
@@ -84,7 +84,7 @@ namespace ET
         }
 
         // 这个channelId是由CreateConnectChannelId生成的
-        public static Session Create(this NetInnerComponent self, IPEndPoint ipEndPoint)
+        public static Session Create(this NetInnerComponent self, string ipEndPoint)
         {
             uint localConn = self.Service.CreateRandomLocalConn();
             long channelId = self.Service.CreateConnectChannelId(localConn);
@@ -92,7 +92,7 @@ namespace ET
             return session;
         }
 
-        private static Session CreateInner(this NetInnerComponent self, long channelId, IPEndPoint ipEndPoint)
+        private static Session CreateInner(this NetInnerComponent self, long channelId, string ipEndPoint)
         {
             Session session = self.AddChildWithId<Session, AService>(channelId, self.Service);
 
@@ -113,7 +113,7 @@ namespace ET
             if (session == null)
             {
                 IPEndPoint ipEndPoint = StartProcessConfigCategory.Instance.Get((int) channelId).InnerIPPort;
-                session = self.CreateInner(channelId, ipEndPoint);
+                session = self.CreateInner(channelId, ipEndPoint.ToString());
             }
 
             return session;

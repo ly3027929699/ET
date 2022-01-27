@@ -32,8 +32,8 @@ namespace ET
 		private bool isBuildExe;
 		private bool isContainAB;
 		private BuildType buildType;
-		private BuildOptions buildOptions;
-		private BuildAssetBundleOptions buildAssetBundleOptions = BuildAssetBundleOptions.None;
+		private BuildOptions buildOptions ;
+		private BuildAssetBundleOptions buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
 
 		[MenuItem("Tools/打包工具")]
 		public static void ShowWindow()

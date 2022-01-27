@@ -93,7 +93,7 @@ namespace ET
             this.requestCallbacks.Clear();
         }
 
-        public IPEndPoint RemoteAddress
+        public string RemoteAddress
         {
             get;
             set;

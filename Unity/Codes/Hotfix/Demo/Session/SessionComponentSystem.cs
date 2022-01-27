@@ -4,7 +4,8 @@
 	{
 		public override void Destroy(SessionComponent self)
 		{
-			self.Session.Dispose();
+			self.Session?.Dispose();
+			self.LocalSession?.Dispose();
 		}
 	}
 }

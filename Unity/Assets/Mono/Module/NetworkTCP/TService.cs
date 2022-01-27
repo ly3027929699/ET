@@ -76,7 +76,7 @@ namespace ET
 				this.idChannels.Add(channel.Id, channel);
 				long channelId = channel.Id;
 				
-				this.OnAccept(channelId, channel.RemoteAddress);
+				this.OnAccept(channelId, channel.RemoteAddress.ToString());
 			}
 			catch (Exception exception)
 			{
@@ -103,13 +103,13 @@ namespace ET
 			return channel;
 		}
 
-		protected override void Get(long id, IPEndPoint address)
+		protected override void Get(long id, string address)
 		{
 			if (this.idChannels.TryGetValue(id, out TChannel _))
 			{
 				return;
 			}
-			this.Create(address, id);
+			this.Create(NetworkHelper.ToIPEndPoint(address), id);
 		}
 		
 		private TChannel Get(long id)

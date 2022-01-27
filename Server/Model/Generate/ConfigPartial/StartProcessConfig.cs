@@ -8,6 +8,9 @@ namespace ET
 
         public long SceneId;
 
+        /// <summary>
+        /// 内网地址+内网端口
+        /// </summary>
         public IPEndPoint InnerIPPort
         {
             get

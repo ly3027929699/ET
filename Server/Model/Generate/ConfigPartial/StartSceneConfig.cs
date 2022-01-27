@@ -94,7 +94,9 @@ namespace ET
 
         private IPEndPoint outerIPPort;
 
-        // 外网地址外网端口
+        /// <summary>
+        /// 外网地址外网端口
+        /// </summary>
         public IPEndPoint OuterIPPort
         {
             get

@@ -8,8 +8,10 @@ namespace ET
 {
 	public class UILoginComponent: Entity, IAwake
 	{
-		public GameObject account;
-		public GameObject password;
-		public GameObject loginBtn;
+		public InputField inpHostId;
+		public Button btnHost;
+		public Button btnClient;
+		public Button btnTest1;
+		public Button btnTest2;
 	}
 }

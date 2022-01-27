@@ -37,13 +37,13 @@ namespace ET
         
         public abstract bool IsDispose();
 
-        protected abstract void Get(long id, IPEndPoint address);
+        protected abstract void Get(long id, string address);
 
         public abstract void Dispose();
 
         protected abstract void Send(long channelId, long actorId, MemoryStream stream);
         
-        protected void OnAccept(long channelId, IPEndPoint ipEndPoint)
+        protected void OnAccept(long channelId, string ipEndPoint)
         {
             this.AcceptCallback.Invoke(channelId, ipEndPoint);
         }
@@ -61,7 +61,7 @@ namespace ET
         }
 
         
-        public Action<long, IPEndPoint> AcceptCallback;
+        public Action<long, string> AcceptCallback;
         public Action<long, int> ErrorCallback;
         public Action<long, MemoryStream> ReadCallback;
 
@@ -80,7 +80,7 @@ namespace ET
             this.Send(channelId, actorId, stream);
         }
 
-        public void GetOrCreate(long id, IPEndPoint address)
+        public void GetOrCreate(long id, string address)
         {
             this.Get(id, address);
         }

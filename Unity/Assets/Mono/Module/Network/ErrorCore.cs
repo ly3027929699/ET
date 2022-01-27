@@ -47,6 +47,17 @@
         public const int ERR_KcpRouterTooManyPackets = 110402;
         public const int ERR_KcpRouterSame = 110402;
         
+        
+        
+        public const int ERR_SendMessageNotFoundSChannel = 120001;
+        public const int ERR_SteamRececiveDataError = 120002;
+        public const int ERR_SteamConnectError = 120003;
+        public const int ERR_SteamConnectTimeout = 120004;
+        public const int ERR_SteamRecvError = 120005;
+        public const int ERR_SteamSendError = 120006;
+        public const int ERR_SteamDisconnectByClient = 120007;
+        public const int ERR_SteamDisconnectByServer = 120008;
+        
         // 110000 以上，避免跟SocketError冲突
 
 

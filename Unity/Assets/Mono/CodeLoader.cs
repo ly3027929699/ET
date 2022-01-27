@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 using System.Linq;
+using Steamworks;
 
 namespace ET
 {
@@ -14,6 +15,8 @@ namespace ET
 		public Action Update;
 		public Action LateUpdate;
 		public Action OnApplicationQuit;
+		
+		public Action<SteamId> OnClientConnectToServer;
 
 		private Assembly assembly;
 
@@ -119,6 +122,11 @@ namespace ET
 		public Type[] GetTypes()
 		{
 			return this.allTypes;
+		}
+
+		public void OnConnectEvent(SteamId obj)
+		{
+			OnClientConnectToServer?.Invoke(obj);
 		}
 	}
 }

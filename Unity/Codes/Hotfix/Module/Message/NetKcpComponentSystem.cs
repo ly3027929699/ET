@@ -72,13 +72,13 @@ namespace ET
         }
 
         // 这个channelId是由CreateAcceptChannelId生成的
-        public static void OnAccept(this NetKcpComponent self, long channelId, IPEndPoint ipEndPoint)
+        public static void OnAccept(this NetKcpComponent self, long channelId, string ipEndPoint)
         {
             Session session = self.AddChildWithId<Session, AService>(channelId, self.Service);
             session.RemoteAddress = ipEndPoint;
 
             // 挂上这个组件，5秒就会删除session，所以客户端验证完成要删除这个组件。该组件的作用就是防止外挂一直连接不发消息也不进行权限验证
-            session.AddComponent<SessionAcceptTimeoutComponent>();
+            // session.AddComponent<SessionAcceptTimeoutComponent>();
             // 客户端连接，2秒检查一次recv消息，10秒没有消息则断开
             session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
         }
@@ -89,7 +89,7 @@ namespace ET
             return session;
         }
 
-        public static Session Create(this NetKcpComponent self, IPEndPoint realIPEndPoint)
+        public static Session Create(this NetKcpComponent self, string realIPEndPoint)
         {
             long channelId = RandomHelper.RandInt64();
             Session session = self.AddChildWithId<Session, AService>(channelId, self.Service);

@@ -263,7 +263,7 @@ namespace ET
                                 kChannel.RealAddress = realAddress;
 
                                 IPEndPoint realEndPoint = kChannel.RealAddress == null? kChannel.RemoteAddress : NetworkHelper.ToIPEndPoint(kChannel.RealAddress);
-                                this.OnAccept(kChannel.Id, realEndPoint);
+                                this.OnAccept(kChannel.Id, realEndPoint.ToString());
                             }
                             if (kChannel.RemoteConn != remoteConn)
                             {
@@ -390,7 +390,7 @@ namespace ET
             return channel;
         }
 
-        protected override void Get(long id, IPEndPoint address)
+        protected override void Get(long id, string address)
         {
             if (this.idChannels.TryGetValue(id, out KChannel kChannel))
             {
@@ -401,7 +401,7 @@ namespace ET
             {
                 // 低32bit是localConn
                 uint localConn = (uint) ((ulong) id & uint.MaxValue);
-                kChannel = new KChannel(id, localConn, this.socket, address, this);
+                kChannel = new KChannel(id, localConn, this.socket,NetworkHelper.ToIPEndPoint(address) , this);
                 this.idChannels.Add(id, kChannel);
                 this.localConnChannels.Add(kChannel.LocalConn, kChannel);
             }
