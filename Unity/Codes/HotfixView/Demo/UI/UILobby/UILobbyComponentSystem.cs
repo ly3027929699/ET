@@ -10,17 +10,19 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.enterMap = rc.Get<GameObject>("EnterMap");
-            self.enterMap.GetComponent<Button>().onClick.AddListener(() => { self.EnterMap().Coroutine(); });
-            self.text = rc.Get<GameObject>("Text").GetComponent<Text>();
+            self.btnStartGame = rc.Get<GameObject>("btnStartGame").GetComponent<Button>();
+            self.inpHostId = rc.Get<GameObject>("inpHostId").GetComponent<InputField>();
+            self.btnStartGame.onClick.AddListener(() => { self.CreateLobby().Coroutine(); });
         }
     }
 
     public static class UILobbyComponentSystem
     {
-        public static async ETTask EnterMap(this UILobbyComponent self)
+        public static async ETTask CreateLobby(this UILobbyComponent self)
         {
-            await EnterMapHelper.EnterMapAsync(self.ZoneScene());
+            string value = self.inpHostId.text;
+            string name = string.IsNullOrWhiteSpace(value)?$"{SteamHelper.GetId()}的房间":value;
+            await SteamHelper.CreateLobby(self.ZoneScene(),name);
             await UIHelper.Remove(self.ZoneScene(), UIType.UILobby);
         }
     }

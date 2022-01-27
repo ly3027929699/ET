@@ -29,6 +29,14 @@
                 get;
                 set;
             }
+        }  
+        public struct Wait_OnSteamConnectToServer: IWaitType
+        {
+            public int Error
+            {
+                get;
+                set;
+            }
         }
     }
 }

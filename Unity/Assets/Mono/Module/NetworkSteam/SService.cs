@@ -17,6 +17,7 @@ namespace ET
         private string SteamAppID = "480";
         private bool AllowSteamRelay = true;
         private int maxConnect;
+        private ETTask<P2Packet> task;
 
         public SService(ThreadSynchronizationContext threadSynchronizationContext, ServiceType serviceType, int maxConnect)
         {
@@ -95,7 +96,6 @@ namespace ET
             }
         }
 
-        private ETTask<P2Packet> task;
 
         private ETTask<P2Packet> AcceptConnectAsync()
         {

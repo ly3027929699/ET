@@ -59,6 +59,7 @@ namespace ET
 
         public struct LoginFinish
         {
+            public Scene OldScene;
             public Scene ZoneScene;
         }
 
@@ -94,6 +95,14 @@ namespace ET
 
         public struct UnitEnterSightRange
         {
+        }
+        public struct SteamServerStart
+        {
+            public Scene ZoneScene;
+        }
+        public struct SteamClientStart
+        {
+            public Scene ZoneScene;
         }
     }
 }

@@ -28,13 +28,15 @@ namespace ET
 
                 Session session = steamSceneComponent.ClientScene
                         .AddComponent<NetKcpComponent, int>(SessionStreamDispatcherType.SessionStreamDispatcherClientOuter).Create(localAdress);
-                CodeLoader.Instance.OnClientConnectToServer?.Invoke(0);
-                
+                CodeLoader.Instance.OnClientConnectToServer?.Invoke(SteamHelper.GetId());
+
                 session.AddComponent<PingComponent>();
                 steamSceneComponent.ClientScene.AddComponent<SessionComponent>().LocalSession = session;
 
                 Log.Info("create host!");
-                // await Game.EventSystem.PublishAsync(new EventType.LoginFinish() {ZoneScene = zoneScene});
+                Game.EventSystem.Publish(new EventType.LoginFinish() {OldScene=zoneScene, ZoneScene = steamSceneComponent.ClientScene });
+                await Game.EventSystem.PublishAsync(new EventType.SteamServerStart() { ZoneScene = steamSceneComponent.ServerScene });
+                await Game.EventSystem.PublishAsync(new EventType.SteamClientStart() { ZoneScene = steamSceneComponent.ClientScene });
             }
             catch (Exception e)
             {
@@ -60,7 +62,10 @@ namespace ET
 
                 gateSession.AddComponent<PingComponent>();
                 scene.AddComponent<SessionComponent>().Session = gateSession;
-                // await Game.EventSystem.PublishAsync(new EventType.LoginFinish() {ZoneScene = zoneScene});
+                //等待连接
+                await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_OnSteamConnectToServer>();
+
+                await Game.EventSystem.PublishAsync(new EventType.SteamClientStart() { ZoneScene = scene });
             }
             catch (Exception e)
             {

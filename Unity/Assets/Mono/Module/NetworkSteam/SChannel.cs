@@ -16,18 +16,16 @@ namespace ET
         }
 
         private SService Service;
-
         public SteamId targetSteamId;
 
         private readonly Queue<byte[]> queue = new Queue<byte[]>();
         private long connectionTimeout = 25 * 1000;
         private readonly MemoryStream recvStream;
-
         private bool isSending;
-
         private bool isConnected;
-
         private long timer;
+        private ETTask<P2Packet> recvTask;
+        private ETTask<P2Packet> sendTask;
 
         public event Action<SteamId> OnClientConnectToServer;
 
@@ -184,9 +182,6 @@ namespace ET
             this.SendInternal(hostSteamID, InternalMessages.CONNECT);
             return this.sendTask;
         }
-
-        private ETTask<P2Packet> recvTask;
-        private ETTask<P2Packet> sendTask;
 
         private async ETTask StartRecv()
         {

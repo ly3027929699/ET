@@ -34,7 +34,6 @@ namespace ET
 
                     long time2 = TimeHelper.ClientNow();
                     self.Ping = time2 - time1;
-                    Log.Info(self.Ping.ToString());
                     
                     Game.TimeInfo.ServerMinusClientTime = response.Time + (time2 - time1) / 2 - time2;
 
