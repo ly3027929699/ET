@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading.Tasks;
 using Steamworks;
 using Steamworks.Data;
-using UnityEngine;
 
 namespace ET
 {
@@ -27,14 +22,12 @@ namespace ET
         private readonly Queue<byte[]> queue = new Queue<byte[]>();
         private long connectionTimeout = 25 * 1000;
         private readonly MemoryStream recvStream;
-        private int sendMsgSize = 0;
 
         private bool isSending;
 
         private bool isConnected;
 
         private long timer;
-        private byte[] sendBuffer;
 
         public event Action<SteamId> OnClientConnectToServer;
 
@@ -49,19 +42,10 @@ namespace ET
 
             this.SendInternal(this.targetSteamId, InternalMessages.DISCONNECT);
 
-            this.DelayedClose(this.targetSteamId);
             this.Id = 0;
             this.isSending = false;
             this.isConnected = false;
             this.targetSteamId = 0;
-        }
-
-        private void DelayedClose(SteamId cSteamID)
-        {
-            this.Service.ThreadSynchronizationContext.Post(() =>
-            {
-                // CloseP2PSessionWithUser(cSteamID);
-            });
         }
 
         /// <summary>
@@ -147,7 +131,7 @@ namespace ET
             this.Service.ThreadSynchronizationContext.Post(() =>
             {
                 Log.Info(err.ToString());
-                if(this.IsDisposed)
+                if (this.IsDisposed)
                     return;
                 try
                 {
@@ -156,7 +140,7 @@ namespace ET
                 }
                 catch (Exception e)
                 {
-                   Log.Error(e);
+                    Log.Error(e);
                     throw;
                 }
             });
@@ -352,7 +336,7 @@ namespace ET
                     byte[] bytes = this.queue.Dequeue();
                     try
                     {
-                        var ret = Send(this.targetSteamId, bytes, bytes.Length);
+                        var ret = Send(this.targetSteamId, bytes, bytes.Length, 1);
                         if (!ret)
                         {
                             Log.Error("send data fail");
@@ -382,8 +366,7 @@ namespace ET
         private bool Send(SteamId host, byte[] msgBuffer, int length, int channel = 0)
         {
             var p2PSends = this.Service.channels;
-            // return SteamNetworking.SendP2PPacket(host, msgBuffer, length, channel, p2PSends[Math.Min(channel, p2PSends.Length - 1)]);
-            return SteamNetworking.SendP2PPacket(host, msgBuffer, length, channel, P2PSend.UnreliableNoDelay);
+            return SteamNetworking.SendP2PPacket(host, msgBuffer, length, channel, p2PSends[Math.Min(channel, p2PSends.Length - 1)]);
         }
 
         public bool SendInternal(SteamId target, InternalMessages type)

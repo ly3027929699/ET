@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Steamworks;
 using Steamworks.Data;
 
@@ -16,6 +13,7 @@ namespace ET
         public int internal_channel => channels.Length;
         private readonly Dictionary<long, SChannel> idChannels = new Dictionary<long, SChannel>();
         private readonly Dictionary<ulong, long> steamIdToChannelId = new Dictionary<ulong, long>();
+        private readonly List<SChannel> tempChannels = new List<SChannel>();
         private string SteamAppID = "480";
         private bool AllowSteamRelay = true;
         private int maxConnect;
@@ -48,10 +46,14 @@ namespace ET
                 this.task = null;
                 task.SetResult(data);
             }
-
+            tempChannels.Clear();
             foreach (var keyValuePair in this.idChannels)
             {
-                keyValuePair.Value?.Update();
+                tempChannels.Add(keyValuePair.Value);
+            }
+            foreach (SChannel tempChannel in this.tempChannels)
+            {
+                tempChannel?.Update();
             }
         }
 
