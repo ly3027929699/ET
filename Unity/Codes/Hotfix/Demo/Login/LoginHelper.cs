@@ -23,7 +23,7 @@ namespace ET
 
                 steamSceneComponent.ServerScene.AddComponent<NetKcpComponent, IPEndPoint, int>(NetworkHelper.ToIPEndPoint(localAdress),
                     SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
-                steamSceneComponent.ServerScene.AddComponent<NetSteamComponent, int, int>(5,
+                steamSceneComponent.ServerScene.AddComponent<NetSteamComponent, int, int>(SteamComponent.MaxPlayer,
                     SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
 
                 Session session = steamSceneComponent.ClientScene
@@ -36,6 +36,7 @@ namespace ET
                 Log.Info("create host!");
                 Game.EventSystem.Publish(
                     new EventType.HomePageFinish_StartHost() { OldScene = zoneScene, ZoneScene = steamSceneComponent.ClientScene });
+                Game.EventSystem.Publish(new EventType.SteamServerStart() { ZoneScene = steamSceneComponent.ServerScene });
             }
             catch (Exception e)
             {

@@ -23,7 +23,7 @@ namespace ET
             response.MyId = player.Id;
             reply();
 
-            Scene targetScene = await SceneFactory.Create(session.ZoneScene(), "", SceneType.Map);
+            Scene targetScene = await SceneFactory.Create(session.ZoneScene(), "GameTest", SceneType.Map);
 
             // 开始传送
             await TransferHelper.Transfer(unit, targetScene);

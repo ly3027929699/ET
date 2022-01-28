@@ -19,7 +19,7 @@ namespace ET
                 return;
             }
 
-            playerComponent.Remove(player.Id);
+            playerComponent.Remove(player);
             reply();
         }
     }

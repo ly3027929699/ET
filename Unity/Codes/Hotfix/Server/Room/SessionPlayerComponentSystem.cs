@@ -12,7 +12,7 @@
         public override void Destroy(SessionPlayerComponent self)
         {
             var playerComponent = self.DomainScene().GetComponent<PlayerComponent>();
-            playerComponent.Remove(self.PlayerId);
+            playerComponent.Remove(self.GetPlayer());
         }
     }
 

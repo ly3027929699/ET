@@ -20,13 +20,14 @@
             return ErrorCode.ERR_Success;
         }
 
-        public static void Remove(this PlayerComponent self, long id)
+        public static void Remove(this PlayerComponent self, Player player)
         {
-            if (!self.Children.Remove(id))
+            if (!self.Children.ContainsKey(player.Id))
             {
-                Log.Error($"remove child fail where id is {id}");
+                Log.Error($"remove child fail where id is {player.Id}");
             }
-            Log.Info($"------------------------{self.DomainScene().Name} remove player : {id}------------------------");
+            player.Dispose();
+            Log.Info($"------------------------{self.DomainScene().Name} remove player : {player.Id}------------------------");
         }
     }
 }
