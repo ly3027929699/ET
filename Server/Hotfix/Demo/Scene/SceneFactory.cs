@@ -36,6 +36,13 @@ namespace ET
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();
                     break;
+                case SceneType.Steam:
+                    scene.AddComponent<NetKcpComponent, IPEndPoint, int>(startSceneConfig.OuterIPPort,
+                        SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
+                    scene.AddComponent<NetSteamComponent, int, int>(SteamComponent.MaxPlayer,
+                        SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
+                    scene.AddComponent<PlayerComponent>();
+                    break;
             }
 
             return scene;

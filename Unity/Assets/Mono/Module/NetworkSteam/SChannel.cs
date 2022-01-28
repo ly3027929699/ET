@@ -288,7 +288,6 @@ namespace ET
                 case ServiceType.Inner:
                 {
                     throw new Exception("steam 无法发送内网消息");
-                    break;
                 }
                 case ServiceType.Outer:
                 {

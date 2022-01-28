@@ -7,7 +7,7 @@ namespace ET
 {
     public static class LoginHelper
     {
-        private static string localAdress = "127.0.0.1:23003";
+        private static string localAdress = "127.0.0.1:10005";
 
         public static async ETTask StartHost(Scene zoneScene)
         {
@@ -17,26 +17,17 @@ namespace ET
 
                 SessionHelper.IsHost = true;
 
-                var steamSceneComponent = Game.Scene.AddComponent<SteamSceneComponent>();
-                steamSceneComponent.ServerScene = SceneFactory.CreateZoneScene(2, "Server", Game.Scene);
-                steamSceneComponent.ClientScene = SceneFactory.CreateZoneScene(3, "Client", Game.Scene);
-
-                steamSceneComponent.ServerScene.AddComponent<NetKcpComponent, IPEndPoint, int>(NetworkHelper.ToIPEndPoint(localAdress),
-                    SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
-                steamSceneComponent.ServerScene.AddComponent<NetSteamComponent, int, int>(SteamComponent.MaxPlayer,
-                    SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
-
-                Session session = steamSceneComponent.ClientScene
+                Session session = zoneScene
                         .AddComponent<NetKcpComponent, int>(SessionStreamDispatcherType.SessionStreamDispatcherClientOuter).Create(localAdress);
-                CodeLoader.Instance.OnClientConnectToServer?.Invoke(SteamHelper.GetId());
+                CodeLoader.Instance.OnClientConnectToServer?.Invoke(SteamCoreHelper.GetId());
 
                 session.AddComponent<PingComponent>();
-                steamSceneComponent.ClientScene.AddComponent<SessionComponent>().LocalSession = session;
+                zoneScene.AddComponent<SessionComponent>().LocalSession = session;
 
                 Log.Info("create host!");
                 Game.EventSystem.Publish(
-                    new EventType.HomePageFinish_StartHost() { OldScene = zoneScene, ZoneScene = steamSceneComponent.ClientScene });
-                Game.EventSystem.Publish(new EventType.SteamServerStart() { ZoneScene = steamSceneComponent.ServerScene });
+                    new EventType.HomePageFinish_StartHost() { OldScene = zoneScene, ZoneScene = zoneScene });
+                Game.EventSystem.Publish(new EventType.SteamServerStart() { ZoneScene = zoneScene });
             }
             catch (Exception e)
             {
@@ -51,11 +42,9 @@ namespace ET
                 await ETTask.CompletedTask;
                 SessionHelper.IsHost = false;
 
-                var steamSceneComponent = Game.Scene.AddComponent<SteamSceneComponent>();
-                var scene = steamSceneComponent.ClientScene = SceneFactory.CreateZoneScene(3, "Client", Game.Scene);
 
                 Game.EventSystem.Publish(
-                    new EventType.HomePageFinish_StartClient() { OldScene = zoneScene, ZoneScene = steamSceneComponent.ClientScene });
+                    new EventType.HomePageFinish_StartClient() { OldScene = zoneScene, ZoneScene = zoneScene});
             }
             catch (Exception e)
             {

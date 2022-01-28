@@ -93,25 +93,5 @@ namespace ET
 
             return null;
         }
-
-        public static SteamId GetId()
-        {
-            return SteamClient.SteamId;
-        }
-
-        public static string GetName()
-        {
-            return SteamClient.Name;
-        }
-
-        public static void Init()
-        {
-            SteamClient.Init(480);
-        }
-
-        public static uint GetSteamAppId()
-        {
-            return 480;
-        }
     }
 }

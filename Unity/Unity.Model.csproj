@@ -50,6 +50,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Codes\Model\**\*.cs" />
+    <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Assets\ThirdParty\Facepunch.Steamworks\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>./Codes/Lib/Debug/UnityEngine.dll</HintPath>
     </Reference>
@@ -594,10 +597,6 @@
       <Project>{d2ad5be1-263a-9a30-ab0f-dc5b08044350}</Project>
       <Name>Unity.ThirdParty</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Codes\Model\Server\Room" />
-    <Folder Include="Codes\Model\Server\Session" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

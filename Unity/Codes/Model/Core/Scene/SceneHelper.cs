@@ -11,15 +11,5 @@ namespace ET
         {
             return (Scene) entity.Domain;
         }
-
-        public static bool IsServer(this Scene zoneScene)
-        {
-            return zoneScene.Zone == 2;
-        }
-
-        public static bool IsClient(this Scene zoneScene)
-        {
-            return zoneScene.Zone == 3;
-         }
     }
 }

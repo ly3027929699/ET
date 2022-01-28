@@ -22,31 +22,5 @@ namespace ET
             packet = default;
             return false;
         }
-        public static async ETTask ReceiveInternalData(int channel)
-        {
-            try
-            {
-                ETTask<P2Packet> task = ETTask<P2Packet>.Create();
-                while (CanReceive(out P2Packet packet,channel))
-                {
-                    if (packet.Data.Length == 1)
-                    {
-                        // action.Invoke(packet);
-                        task.SetResult(packet);
-                        return;
-                    }
-                    else
-                    {
-                        Log.Info("Incorrect package length on internal channel.");
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-            return;
-        }
-
     }
 }

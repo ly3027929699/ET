@@ -25,24 +25,18 @@ namespace ET
     {
         public static void Awake(this SteamComponent self)
         {
-            if (self.DomainScene().IsClient())
-            {
-                SteamMatchmaking.OnLobbyCreated += self.OnLobbyCreated;
-                SteamMatchmaking.OnLobbyEntered += self.OnLobbyEntered;
-                SteamMatchmaking.OnLobbyMemberJoined += self.OnLobbyMemberJoined;
-                SteamMatchmaking.OnChatMessage += self.OnChatMessage;
-            }
+            SteamMatchmaking.OnLobbyCreated += self.OnLobbyCreated;
+            SteamMatchmaking.OnLobbyEntered += self.OnLobbyEntered;
+            SteamMatchmaking.OnLobbyMemberJoined += self.OnLobbyMemberJoined;
+            SteamMatchmaking.OnChatMessage += self.OnChatMessage;
         }
 
         public static void Destroy(this SteamComponent self)
         {
-            if (self.DomainScene().IsClient())
-            {
-                SteamMatchmaking.OnLobbyCreated -= self.OnLobbyCreated;
-                SteamMatchmaking.OnLobbyEntered -= self.OnLobbyEntered;
-                SteamMatchmaking.OnLobbyMemberJoined -= self.OnLobbyMemberJoined;
-                SteamHelper.LeaveLobby(self.DomainScene()).Coroutine();
-            }
+            SteamMatchmaking.OnLobbyCreated -= self.OnLobbyCreated;
+            SteamMatchmaking.OnLobbyEntered -= self.OnLobbyEntered;
+            SteamMatchmaking.OnLobbyMemberJoined -= self.OnLobbyMemberJoined;
+            SteamHelper.LeaveLobby(self.DomainScene()).Coroutine();
         }
 
         public static async ETTask<SteamId> CreateLobby(this SteamComponent self, string lobbyName)
@@ -67,7 +61,7 @@ namespace ET
             }
 
             self.Lobby = lobby;
-            self.HostId = SteamHelper.GetId();
+            self.HostId = SteamCoreHelper.GetId();
 
             self.SetLobbyData(SteamComponent.LobbyNameKey, self.LobbyName);
             self.SetLobbyData(SteamComponent.LobbyHostIdKey, self.HostId.ToString());
@@ -80,7 +74,7 @@ namespace ET
             self.Lobby = lobby;
             self.HostId = lobby.Owner.Id;
 
-            self.SendChatMessage(SteamHelper.GetName() + " Joined the Lobby!..", false);
+            self.SendChatMessage(SteamCoreHelper.GetName() + " Joined the Lobby!..", false);
         }
 
         private static void OnLobbyMemberJoined(this SteamComponent self, Lobby lobby, Friend friend)
@@ -105,7 +99,7 @@ namespace ET
 
         public static void LeaveLobby(this SteamComponent self)
         {
-            self.SendChatMessage(SteamHelper.GetName() + " Left the Lobby", false);
+            self.SendChatMessage(SteamCoreHelper.GetName() + " Left the Lobby", false);
             self.Lobby.Leave();
             self.Lobby = default;
         }
@@ -122,9 +116,10 @@ namespace ET
         {
             var content = isChat? DateTime.Now.ToString("HH:mm") + " " + SteamClient.Name + ": " + t + '\0' : t;
             var bytes = Encoding.Default.GetBytes(content);
-            self.Lobby.SendChatBytes(bytes, bytes.Length);
+            self.Lobby.SendChatBytes(bytes);
         }
-        public static void OnChatMessage(this SteamComponent self,Lobby arg1, Friend arg2, string arg3)
+
+        public static void OnChatMessage(this SteamComponent self, Lobby arg1, Friend arg2, string arg3)
         {
             Log.Info(arg3);
         }

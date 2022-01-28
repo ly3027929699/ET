@@ -21,7 +21,7 @@ namespace ET
         public static async ETTask CreateLobby(this UICreateLobbyComponent self)
         {
             string value = self.inpHostId.text;
-            string name = string.IsNullOrWhiteSpace(value)? $"{SteamHelper.GetId()}的房间" : value;
+            string name = string.IsNullOrWhiteSpace(value)? $"{SteamCoreHelper.GetId()}的房间" : value;
             Scene zoneScene = self.ZoneScene();
             
             await SteamHelper.CreateLobby(zoneScene, name);

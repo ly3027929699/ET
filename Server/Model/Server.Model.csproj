@@ -22,12 +22,36 @@
   </PropertyGroup>
   <ItemGroup>
 
+    <Compile Include="..\..\Unity\Assets\Mono\Helper\SteamCoreHelper.cs">
+      <Link>Core\Helper\SteamCoreHelper.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkSteam\SChannel.cs">
+      <Link>Module\NetworkSteam\SChannel.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkSteam\SService.cs">
+      <Link>Module\NetworkSteam\SService.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Assets\Mono\Module\NetworkSteam\SteamUtility.cs">
+      <Link>Module\NetworkSteam\SteamUtility.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Core\**\*.cs"> 
       <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Steam\SteamComponent.cs">
+      <Link>Demo\SteamComponent.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Demo\Unit\UnitType.cs">
       <Link>Demo\Unit\UnitType.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Module\MessageSteam\NetSteamComponent.cs">
+      <Link>Module\MessageSteam\NetSteamComponent.cs</Link>
     </Compile>
 
     <Compile Include="..\..\Unity\Codes\Model\Module\Recast\**\*.cs">
@@ -117,6 +141,8 @@
     <ProjectReference Include="..\..\ThirdParty\UnityEngine\UnityEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Module\NetworkSteam" />
+    <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\ThirdParty\Facepunch.Steamworks\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

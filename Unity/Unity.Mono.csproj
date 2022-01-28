@@ -119,6 +119,7 @@
      <Compile Include="Assets\Mono\MonoBehaviour\CameraFollow.cs" />
      <Compile Include="Assets\Mono\MonoBehaviour\PlatformerCharacter2D.cs" />
      <Compile Include="Assets\Mono\MonoBehaviour\Platformer2DUserControl.cs" />
+     <Compile Include="Assets\Mono\Helper\SteamCoreHelper.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -380,6 +381,9 @@
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Rocks">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
+     </Reference>
+     <Reference Include="Facepunch.Steamworks.Win64">
+     <HintPath>E:/Unity/ET/Unity/Assets/ThirdParty/Facepunch.Steamworks/Facepunch.Steamworks.Win64.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>

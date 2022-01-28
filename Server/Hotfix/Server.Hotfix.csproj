@@ -25,6 +25,9 @@
     <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\ConfigComponentSystem.cs">
       <Link>Module\Config\ConfigComponentSystem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\MessageSteam\NetSteamComponentSystem.cs">
+      <Link>Module\MessageSteam\NetSteamComponentSystem.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\NumericChangeEvent_NotifyWatcher.cs">
       <Link>Module\Numeric\NumericChangeEvent_NotifyWatcher.cs</Link>
     </Compile>
@@ -46,5 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Server.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Facepunch.Steamworks.Win64, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\ThirdParty\Facepunch.Steamworks\Facepunch.Steamworks.Win64.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

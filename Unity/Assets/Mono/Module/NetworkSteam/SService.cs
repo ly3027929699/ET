@@ -14,7 +14,6 @@ namespace ET
         private readonly Dictionary<long, SChannel> idChannels = new Dictionary<long, SChannel>();
         private readonly Dictionary<ulong, long> steamIdToChannelId = new Dictionary<ulong, long>();
         private readonly List<SChannel> tempChannels = new List<SChannel>();
-        private string SteamAppID = "480";
         private bool AllowSteamRelay = true;
         private int maxConnect;
         private ETTask<P2Packet> task;
@@ -25,6 +24,7 @@ namespace ET
             this.ThreadSynchronizationContext = threadSynchronizationContext;
             this.maxConnect = maxConnect;
 
+            SteamCoreHelper.InitSteamConfig();
             StartAccept().Coroutine();
         }
 
@@ -45,11 +45,13 @@ namespace ET
                 this.task = null;
                 task.SetResult(data);
             }
+
             tempChannels.Clear();
             foreach (var keyValuePair in this.idChannels)
             {
                 tempChannels.Add(keyValuePair.Value);
             }
+
             foreach (SChannel tempChannel in this.tempChannels)
             {
                 tempChannel?.Update();
@@ -94,7 +96,6 @@ namespace ET
             }
         }
 
-
         private ETTask<P2Packet> AcceptConnectAsync()
         {
             if (this.task != null)
@@ -111,11 +112,11 @@ namespace ET
 
         private void CloseP2PSessionWithUser(SteamId clientSteamID)
         {
-           var ret=  SteamNetworking.CloseP2PSessionWithUser(clientSteamID);
-           if (!ret)
-           {
-               Log.Warning($"close session fail targetId:{clientSteamID}");
-           }
+            var ret = SteamNetworking.CloseP2PSessionWithUser(clientSteamID);
+            if (!ret)
+            {
+                Log.Warning($"close session fail targetId:{clientSteamID}");
+            }
         }
 
         /// <summary>
@@ -141,8 +142,9 @@ namespace ET
                             Log.Warning($"Conn't find channel which steamId is {clientSteamID}");
                             return;
                         }
+
                         CloseP2PSessionWithUser(clientSteamID);
-                        this.OnError(channelId,ErrorCore.ERR_SteamDisconnectByClient);
+                        this.OnError(channelId, ErrorCore.ERR_SteamDisconnectByClient);
                         Log.Info($"Client with SteamID {clientSteamID} disconnected.");
                         break;
                     default:
@@ -169,10 +171,12 @@ namespace ET
 
         private void CreateChannelToServer(long id, SteamId steamId)
         {
+#if !SERVER
             SChannel channel = new SChannel(id, steamId, this, ChannelType.Connect);
             this.idChannels.Add(channel.Id, channel);
             this.steamIdToChannelId.Add(steamId, channel.Id);
             channel.RegisterOnConnectEvent(CodeLoader.Instance.OnConnectEvent);
+#endif
         }
 
         public override void Remove(long id)
@@ -182,6 +186,7 @@ namespace ET
             {
                 return;
             }
+
             SteamId clientSteamID = sChannel.targetSteamId;
             this.steamIdToChannelId.Remove(clientSteamID);
             this.idChannels.Remove(id);
