@@ -238,4 +238,45 @@ message M2C_TransferMap // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
- 
+
+//ResponseType S2C_CreateLobby
+message C2S_CreateLobby // IRequest
+{
+	int32 RpcId = 1;
+	string name = 2;
+}
+
+message S2C_CreateLobby // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+
+	uint64 SteamId = 4;
+}
+//ResponseType S2C_LeaveLobby
+message C2S_LeaveLobby // IRequest
+{
+	int32 RpcId = 1;
+}
+
+message S2C_LeaveLobby // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	uint64 SteamId = 4;
+}
+//ResponseType S2C_JoinLobby
+message C2S_JoinLobby // IRequest
+{
+	int32 RpcId = 1;
+	uint64 SteamId = 4;
+}
+
+message S2C_JoinLobby // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}

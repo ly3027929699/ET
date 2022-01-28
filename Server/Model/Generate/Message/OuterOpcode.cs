@@ -32,5 +32,11 @@ namespace ET
 		 public const ushort M2C_TestRobotCase = 10029;
 		 public const ushort C2M_TransferMap = 10030;
 		 public const ushort M2C_TransferMap = 10031;
+		 public const ushort C2S_CreateLobby = 10032;
+		 public const ushort S2C_CreateLobby = 10033;
+		 public const ushort C2S_LeaveLobby = 10034;
+		 public const ushort S2C_LeaveLobby = 10035;
+		 public const ushort C2S_JoinLobby = 10036;
+		 public const ushort S2C_JoinLobby = 10037;
 	}
 }

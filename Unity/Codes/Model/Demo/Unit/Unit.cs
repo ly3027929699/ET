@@ -13,6 +13,8 @@ namespace ET
 
         private Vector3 position; //坐标
 
+        public UnitType Type;
+
         public Vector3 Position
         {
             get => this.position;

@@ -29,7 +29,7 @@ namespace ET
 
         public static void OnStartClient(this UILoginComponent self)
         {
-            LoginHelper.StartClient(self.ZoneScene(), 1.ToString());
+            LoginHelper.StartClient(self.ZoneScene());
         }
     }
 }

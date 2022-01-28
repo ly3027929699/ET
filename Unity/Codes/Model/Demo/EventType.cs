@@ -59,10 +59,8 @@ namespace ET
 
         public struct LoginFinish
         {
-            public Scene OldScene;
             public Scene ZoneScene;
         }
-
         public struct LoadingBegin
         {
             public Scene Scene;
@@ -101,6 +99,26 @@ namespace ET
             public Scene ZoneScene;
         }
         public struct SteamClientStart
+        {
+            public Scene ZoneScene;
+        }
+        
+        public struct HomePageFinish_StartHost
+        {
+            public Scene OldScene;
+            public Scene ZoneScene;
+        } 
+        public struct HomePageFinish_StartClient
+        {
+            public Scene OldScene;
+            public Scene ZoneScene;
+        }
+
+        public struct CreateLobbyFinish
+        {
+            public Scene ZoneScene;
+        }
+        public struct JoinLobbyFinish
         {
             public Scene ZoneScene;
         }

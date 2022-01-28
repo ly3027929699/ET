@@ -31,16 +31,16 @@ namespace ET
 			switch (e.LastOperation)
 			{
 				case SocketAsyncOperation.Connect:
-					this.Service.ThreadSynchronizationContext.Post(()=>OnConnectComplete(e));
+					this.Service.ThreadSynchronizationContext?.Post(()=>OnConnectComplete(e));
 					break;
 				case SocketAsyncOperation.Receive:
-					this.Service.ThreadSynchronizationContext.Post(()=>OnRecvComplete(e));
+					this.Service.ThreadSynchronizationContext?.Post(()=>OnRecvComplete(e));
 					break;
 				case SocketAsyncOperation.Send:
-					this.Service.ThreadSynchronizationContext.Post(()=>OnSendComplete(e));
+					this.Service.ThreadSynchronizationContext?.Post(()=>OnSendComplete(e));
 					break;
 				case SocketAsyncOperation.Disconnect:
-					this.Service.ThreadSynchronizationContext.Post(()=>OnDisconnectComplete(e));
+					this.Service.ThreadSynchronizationContext?.Post(()=>OnDisconnectComplete(e));
 					break;
 				default:
 					throw new Exception($"socket error: {e.LastOperation}");

@@ -821,6 +821,21 @@
      <Reference Include="ICSharpCode.SharpZipLib">
      <HintPath>E:/Unity/ET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.Burst.Unsafe">
+     <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.Unsafe.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Mdb">
+     <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Pdb">
+     <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil">
+     <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Burst.Cecil.Rocks">
+     <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
+     </Reference>
      <Reference Include="mscorlib">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>
      </Reference>

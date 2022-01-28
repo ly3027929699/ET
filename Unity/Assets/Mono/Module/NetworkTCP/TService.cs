@@ -44,7 +44,7 @@ namespace ET
 				case SocketAsyncOperation.Accept:
 					SocketError socketError = e.SocketError;
 					Socket acceptSocket = e.AcceptSocket;
-					this.ThreadSynchronizationContext.Post(()=>{this.OnAcceptComplete(socketError, acceptSocket);});
+					this.ThreadSynchronizationContext?.Post(()=>{this.OnAcceptComplete(socketError, acceptSocket);});
 					break;
 				default:
 					throw new Exception($"socket error: {e.LastOperation}");

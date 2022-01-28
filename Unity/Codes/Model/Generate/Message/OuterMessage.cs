@@ -493,4 +493,91 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(S2C_CreateLobby))]
+	[Message(OuterOpcode.C2S_CreateLobby)]
+	[ProtoContract]
+	public partial class C2S_CreateLobby: Object, IRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public string name { get; set; }
+
+	}
+
+	[Message(OuterOpcode.S2C_CreateLobby)]
+	[ProtoContract]
+	public partial class S2C_CreateLobby: Object, IResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public ulong SteamId { get; set; }
+
+	}
+
+	[ResponseType(nameof(S2C_LeaveLobby))]
+	[Message(OuterOpcode.C2S_LeaveLobby)]
+	[ProtoContract]
+	public partial class C2S_LeaveLobby: Object, IRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.S2C_LeaveLobby)]
+	[ProtoContract]
+	public partial class S2C_LeaveLobby: Object, IResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public ulong SteamId { get; set; }
+
+	}
+
+	[ResponseType(nameof(S2C_JoinLobby))]
+	[Message(OuterOpcode.C2S_JoinLobby)]
+	[ProtoContract]
+	public partial class C2S_JoinLobby: Object, IRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(4)]
+		public ulong SteamId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.S2C_JoinLobby)]
+	[ProtoContract]
+	public partial class S2C_JoinLobby: Object, IResponse
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int Error { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+	}
+
 }

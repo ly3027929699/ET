@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Steamworks;
 using Steamworks.Data;
 
@@ -162,11 +163,6 @@ namespace ET
                 var packet = await SendFirstDataAsync();
 
                 OnConnectAccepted(packet);
-                if (this.isConnected)
-                {
-                    this.StartRecv().Coroutine();
-                    this.StartSend();
-                }
             }
             catch (Exception ex)
             {
@@ -220,22 +216,19 @@ namespace ET
 
         private void CheckData()
         {
-            for (int chNum = 0; chNum < this.Service.channels.Length; chNum++)
+            while (SteamUtility.CanReceive(out P2Packet packet, 0))
             {
-                while (SteamUtility.CanReceive(out P2Packet packet, chNum))
+                var clientSteamID = packet.SteamId;
+
+                if (clientSteamID != this.targetSteamId)
                 {
-                    var clientSteamID = packet.SteamId;
-
-                    if (clientSteamID != this.targetSteamId)
-                    {
-                        Log.Error($"steamId: {this.targetSteamId} senderSteamId: {clientSteamID}");
-                        this.OnError(ErrorCore.ERR_SteamRececiveDataError);
-                    }
-
-                    var task = this.recvTask;
-                    this.recvTask = null;
-                    task.SetResult(packet);
+                    Log.Error($"steamId: {this.targetSteamId} senderSteamId: {clientSteamID}");
+                    this.OnError(ErrorCore.ERR_SteamRececiveDataError);
                 }
+
+                var task = this.recvTask;
+                this.recvTask = null;
+                task.SetResult(packet);
             }
         }
 
@@ -247,20 +240,28 @@ namespace ET
         {
             InternalMessages type = (InternalMessages) packet.Data[0];
             SteamId clientSteamID = packet.SteamId;
+            Log.Info($"{type}");
             switch (type)
             {
                 case InternalMessages.ACCEPT_CONNECT:
                     this.isConnected = true;
+                    this.StartRecv().Coroutine();
+                    this.StartSend();
                     OnClientConnectToServer?.Invoke(packet.SteamId);
                     Log.Info($"{SteamClient.Name} connect to {clientSteamID}  ACCEPT_CONNECT");
                     break;
                 case InternalMessages.DISCONNECT:
+                    if (!this.isConnected)
+                    {
+                        //avoid to recive last disconnect message
+                        return;
+                    }
                     this.isConnected = false;
                     this.OnError(ErrorCore.ERR_SteamDisconnectByServer);
                     Log.Info($"Client with SteamID {clientSteamID} closed.");
                     break;
                 default:
-                    Log.Info("Received unknown message type");
+                    Log.Info($"Received unknown message type:{type}");
                     break;
             }
         }
@@ -331,7 +332,7 @@ namespace ET
                     byte[] bytes = this.queue.Dequeue();
                     try
                     {
-                        var ret = Send(this.targetSteamId, bytes, bytes.Length, 1);
+                        var ret = Send(this.targetSteamId, bytes, bytes.Length, P2PSend.Unreliable);
                         if (!ret)
                         {
                             Log.Error("send data fail");
@@ -358,10 +359,9 @@ namespace ET
         /// <param name="msgBuffer"></param>
         /// <param name="length"></param>
         /// <param name="channel"></param>
-        private bool Send(SteamId host, byte[] msgBuffer, int length, int channel = 0)
+        private bool Send(SteamId host, byte[] msgBuffer, int length, P2PSend sendType)
         {
-            var p2PSends = this.Service.channels;
-            return SteamNetworking.SendP2PPacket(host, msgBuffer, length, channel, p2PSends[Math.Min(channel, p2PSends.Length - 1)]);
+            return SteamNetworking.SendP2PPacket(host, msgBuffer, length, 0, sendType);
         }
 
         public bool SendInternal(SteamId target, InternalMessages type)

@@ -67,8 +67,8 @@ namespace ET
 
             // 挂上这个组件，5秒就会删除session，所以客户端验证完成要删除这个组件。该组件的作用就是防止外挂一直连接不发消息也不进行权限验证
             // session.AddComponent<SessionAcceptTimeoutComponent>();
-            // // 客户端连接，2秒检查一次recv消息，10秒没有消息则断开
-            // session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
+            // 客户端连接，2秒检查一次recv消息，10秒没有消息则断开
+            session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
         }
 
         public static Session Get(this NetSteamComponent self, long id)
@@ -82,7 +82,7 @@ namespace ET
             long channelId = RandomHelper.RandInt64();
             Session session = self.AddChildWithId<Session, AService>(channelId, self.Service);
             session.RemoteAddress = realIPEndPoint;
-            // session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
+            session.AddComponent<SessionIdleCheckerComponent, int>(NetThreadComponent.checkInteral);
 
             self.Service.GetOrCreate(session.Id, realIPEndPoint);
 

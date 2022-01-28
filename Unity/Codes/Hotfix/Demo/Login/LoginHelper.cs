@@ -34,9 +34,8 @@ namespace ET
                 steamSceneComponent.ClientScene.AddComponent<SessionComponent>().LocalSession = session;
 
                 Log.Info("create host!");
-                Game.EventSystem.Publish(new EventType.LoginFinish() {OldScene=zoneScene, ZoneScene = steamSceneComponent.ClientScene });
-                await Game.EventSystem.PublishAsync(new EventType.SteamServerStart() { ZoneScene = steamSceneComponent.ServerScene });
-                await Game.EventSystem.PublishAsync(new EventType.SteamClientStart() { ZoneScene = steamSceneComponent.ClientScene });
+                Game.EventSystem.Publish(
+                    new EventType.HomePageFinish_StartHost() { OldScene = zoneScene, ZoneScene = steamSceneComponent.ClientScene });
             }
             catch (Exception e)
             {
@@ -44,7 +43,7 @@ namespace ET
             }
         }
 
-        public static async ETTask StartClient(Scene zoneScene, string host)
+        public static async ETTask StartClient(Scene zoneScene)
         {
             try
             {
@@ -54,18 +53,8 @@ namespace ET
                 var steamSceneComponent = Game.Scene.AddComponent<SteamSceneComponent>();
                 var scene = steamSceneComponent.ClientScene = SceneFactory.CreateZoneScene(3, "Client", Game.Scene);
 
-                // 创建一个ETModel层的Session
-                // R2C_Login r2CLogin;
-                Session gateSession = scene
-                        .AddComponent<NetSteamComponent, int, string>(SessionStreamDispatcherType.SessionStreamDispatcherClientOuter, null)
-                        .Create(host);
-
-                gateSession.AddComponent<PingComponent>();
-                scene.AddComponent<SessionComponent>().Session = gateSession;
-                //等待连接
-                await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_OnSteamConnectToServer>();
-
-                await Game.EventSystem.PublishAsync(new EventType.SteamClientStart() { ZoneScene = scene });
+                Game.EventSystem.Publish(
+                    new EventType.HomePageFinish_StartClient() { OldScene = zoneScene, ZoneScene = steamSceneComponent.ClientScene });
             }
             catch (Exception e)
             {

@@ -9,8 +9,8 @@ namespace ET
 {
     public sealed class SService: AService
     {
-        public P2PSend[] channels = new P2PSend[] { P2PSend.Reliable, P2PSend.UnreliableNoDelay };
-        public int internal_channel => channels.Length;
+        // public P2PSend[] channels = new P2PSend[] { P2PSend.Reliable, P2PSend.UnreliableNoDelay ,P2PSend.Unreliable};
+        public int internal_channel = 10;
         private readonly Dictionary<long, SChannel> idChannels = new Dictionary<long, SChannel>();
         private readonly Dictionary<ulong, long> steamIdToChannelId = new Dictionary<ulong, long>();
         private readonly List<SChannel> tempChannels = new List<SChannel>();
@@ -25,7 +25,6 @@ namespace ET
             this.ThreadSynchronizationContext = threadSynchronizationContext;
             this.maxConnect = maxConnect;
 
-            InitSteamConfig();
             StartAccept().Coroutine();
         }
 
@@ -34,7 +33,6 @@ namespace ET
             this.ServiceType = serviceType;
             this.ThreadSynchronizationContext = threadSynchronizationContext;
 
-            InitSteamConfig();
             SteamNetworking.OnP2PSessionRequest += OnNewConnection;
             SteamNetworking.AllowP2PPacketRelay(AllowSteamRelay);
         }
@@ -113,28 +111,11 @@ namespace ET
 
         private void CloseP2PSessionWithUser(SteamId clientSteamID)
         {
-            SteamNetworking.CloseP2PSessionWithUser(clientSteamID);
-        }
-
-        private void InitSteamConfig()
-        {
-            const string fileName = "steam_appid.txt";
-            if (File.Exists(fileName))
-            {
-                string content = File.ReadAllText(fileName);
-                if (content != SteamAppID)
-                {
-                    File.WriteAllText(fileName, SteamAppID.ToString());
-                    Log.Info($"Updating {fileName}. Previous: {content}, new SteamAppID {SteamAppID}");
-                }
-            }
-            else
-            {
-                File.WriteAllText(fileName, SteamAppID.ToString());
-                Log.Info($"New {fileName} written with SteamAppID {SteamAppID}");
-            }
-
-            SteamClient.Init(uint.Parse(SteamAppID), true);
+           var ret=  SteamNetworking.CloseP2PSessionWithUser(clientSteamID);
+           if (!ret)
+           {
+               Log.Warning($"close session fail targetId:{clientSteamID}");
+           }
         }
 
         /// <summary>
@@ -160,11 +141,12 @@ namespace ET
                             Log.Warning($"Conn't find channel which steamId is {clientSteamID}");
                             return;
                         }
+                        CloseP2PSessionWithUser(clientSteamID);
                         this.OnError(channelId,ErrorCore.ERR_SteamDisconnectByClient);
                         Log.Info($"Client with SteamID {clientSteamID} disconnected.");
                         break;
                     default:
-                        Log.Info("Received unknown message type");
+                        Log.Info($"Received unknown message type: {type}");
                         break;
                 }
             }
@@ -198,7 +180,6 @@ namespace ET
             SChannel sChannel = this.Get(id);
             if (sChannel == null)
             {
-                Log.Warning($"schannel is null where id is {id} and count {this.idChannels.Count}");
                 return;
             }
             SteamId clientSteamID = sChannel.targetSteamId;
