@@ -24,6 +24,8 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
+                zoneScene.RemoveComponent<SteamComponent>();
+                return;
             }
         }
 
@@ -37,11 +39,21 @@ namespace ET
 
                 gateSession.AddComponent<PingComponent>();
                 zoneScene.AddComponent<SessionComponent>().Session = gateSession;
-                //等待连接
-                Log.Info($"start connect {hostId}...");
-                await Game.Scene.GetComponent<ObjectWait>().Wait<WaitType.Wait_OnSteamConnectToServer>();
-                //
-                Log.Info("connected");
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                zoneScene.RemoveComponent<SessionComponent>();
+                return ErrorCode.JoinLobbyFail;
+            }
+
+            //等待连接
+            Log.Info($"start connect {hostId}...");
+            await Game.Scene.GetComponent<ObjectWait>().Wait<WaitType.Wait_OnSteamConnectToServer>();
+            //
+            Log.Info("connected");
+            try
+            {
                 var s2c_CreateLobby = await SessionHelper.Call(zoneScene, new C2S_JoinLobby() { SteamId = lobbyId }) as S2C_JoinLobby;
                 if (s2c_CreateLobby.Error != 0)
                 {
@@ -55,9 +67,9 @@ namespace ET
             catch (Exception e)
             {
                 Log.Error(e);
+                zoneScene.RemoveComponent<SteamComponent>();
+                return ErrorCode.JoinLobbyFail;
             }
-
-            return ErrorCode.ERR_Success;
         }
 
         public static async ETTask LeaveLobby(Scene zoneScene)

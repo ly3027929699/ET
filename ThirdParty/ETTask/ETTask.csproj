@@ -13,12 +13,12 @@
     
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <DefineConstants>TRACE;NOT_UNITY</DefineConstants>
-      <OutputPath>..\..\Bin\</OutputPath>
+      <OutputPath>..\..\..\SVN\ET-P2P\BIN\</OutputPath>
     </PropertyGroup>
     
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DefineConstants>TRACE;NOT_UNITY</DefineConstants>
-      <OutputPath>..\..\Bin\</OutputPath>
+      <OutputPath>..\..\..\SVN\ET-P2P\BIN\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

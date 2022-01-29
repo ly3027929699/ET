@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\mdb\Mono.Cecil.Mdb\MdbWriter.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\TypeComparisonMode.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\mdb\Mono.Cecil.Mdb\MdbWriter.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Debugger\Protocol\CSBindBreakpoint.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\CLRBinding\CLRBindingUtils.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.PE\ImageWriter.cs" />
@@ -73,8 +73,8 @@
      <Compile Include="Assets\ThirdParty\protobuf-net\Meta\TypeFormatEventArgs.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\MethodReferenceComparer.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\AssemblyHashAlgorithm.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono\Disposable.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\ImmutableCollectionDecorator.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono\Disposable.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.PE\ByteBufferEqualityComparer.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.PE\TextMap.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\ILRuntimeException.cs" />
@@ -85,8 +85,8 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.PE\Image.cs" />
      <Compile Include="Assets\ThirdParty\ETTask\ETCancellationToken.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Cil\CodeReader.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\MetadataSystem.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\GenericParameter.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\MetadataSystem.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Compiler\CompilerContext.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SurrogateSerializer.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\MemberSpecifiedDecorator.cs" />
@@ -183,10 +183,10 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\ArrayType.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\ProtoContractAttribute.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Helpers.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\PropertyAttributes.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\ParameterAttributes.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\TypeSystem.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\PropertyAttributes.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Adaptors\CLRCrossBindingAdaptors.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\TypeSystem.cs" />
      <Compile Include="Assets\ThirdParty\LitJson\JsonException.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\CLRBinding\BindingGeneratorExtensions.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\CharSerializer.cs" />
@@ -207,8 +207,8 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Microsoft.Cci.Pdb\PdbSource.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Metadata\ElementType.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Cil\Code.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\ILIntepreter.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Debugger\Protocol\CSStep.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\ILIntepreter.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Microsoft.Cci.Pdb\PdbSlot.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Reflection\ILRuntimeFieldInfo.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\NativeType.cs" />
@@ -317,19 +317,19 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Metadata\Row.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Meta\SubType.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\TypeDefinition.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\FunctionPointerType.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\SecurityDeclaration.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\FieldDefinition.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\GenericInstanceMethod.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\CLR\Method\CLRMethod.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\FunctionPointerType.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\AssemblyLinkedResource.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TypeSerializer.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Mono.Cecil.Pdb\SymDocumentWriter.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Microsoft.Cci.Pdb\DataStream.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Metadata\GuidHeap.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\Import.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\IExtensible.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono\StreamExtensions.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Metadata\GuidHeap.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Reflection\Extensions.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Microsoft.Cci.Pdb\DbiDbgHdr.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\PropertyDefinition.cs" />
@@ -341,8 +341,8 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Cil\Instruction.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\CallbackAttributes.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\TupleSerializer.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\WindowsRuntimeProjections.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\Int16Serializer.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\WindowsRuntimeProjections.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\AssemblyWriter.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\ProtoMapAttribute.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\MethodSemanticsAttributes.cs" />
@@ -396,8 +396,8 @@
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\symbols\pdb\Microsoft.Cci.Pdb\DbiModuleInfo.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\Serializers\SystemTypeSerializer.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\RegisterVM\ILIntepreter.Register.cs" />
-     <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\RegisterVM\Optimizer.FCP.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Debugger\Protocol\CSExecute.cs" />
+     <Compile Include="Assets\ThirdParty\ILRuntime\Runtime\Intepreter\RegisterVM\Optimizer.FCP.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil\IMetadataScope.cs" />
      <Compile Include="Assets\ThirdParty\protobuf-net\ProtoIncludeAttribute.cs" />
      <Compile Include="Assets\ThirdParty\ILRuntime\Mono.Cecil\Mono.Cecil.Cil\Symbols.cs" />
@@ -669,17 +669,17 @@
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
-     <Reference Include="CommandLine">
-     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/CommandLine.dll</HintPath>
-     </Reference>
-     <Reference Include="ICSharpCode.SharpZipLib">
-     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+     <Reference Include="Facepunch.Steamworks.Win64">
+     <HintPath>E:/Unity/ET/Unity/Assets/ThirdParty/Facepunch.Steamworks/Facepunch.Steamworks.Win64.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Unsafe">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.Unsafe.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Mdb">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="CommandLine">
+     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/CommandLine.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Pdb">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll</HintPath>
@@ -690,8 +690,8 @@
      <Reference Include="Unity.Burst.Cecil.Rocks">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
      </Reference>
-     <Reference Include="Facepunch.Steamworks.Win64">
-     <HintPath>E:/Unity/ET/Unity/Assets/ThirdParty/Facepunch.Steamworks/Facepunch.Steamworks.Win64.dll</HintPath>
+     <Reference Include="ICSharpCode.SharpZipLib">
+     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>

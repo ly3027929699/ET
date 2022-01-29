@@ -69,22 +69,22 @@ namespace ET
                 singleLobbyButton.MumberCount.text = lobby.MemberCount + "/" + lobby.MaxMembers;
                 singleLobbyButton.ServerId = lobby.GetData(SteamComponent.LobbyHostIdKey);
                 singleLobbyButton.lobbyId = lobby.Id;
-                singleLobbyButton.Add((a,b) => self.OnClickJoin(a,b).Coroutine());
+                singleLobbyButton.Add((a, b) => self.OnClickJoin(a, b).Coroutine());
             }
         }
 
-        private static async ETTask OnClickJoin(this UIJoinLobbyComponent self, string id,SteamId lobbyId)
+        private static async ETTask OnClickJoin(this UIJoinLobbyComponent self, string id, SteamId lobbyId)
         {
             Scene zoneScene = self.ZoneScene();
-            int err= await SteamHelper.JoinLobby(zoneScene, id,lobbyId);
-           if (err != ErrorCode.ERR_Success)
-           {
-               Log.Info(err.ToString());
-           }
-           
-           EnterMapHelper.EnterMapAsync(zoneScene).Coroutine();
-           Game.EventSystem.Publish(new EventType.CreateLobbyFinish{ZoneScene = zoneScene});
-           await UIHelper.Remove(self.ZoneScene(), UIType.UIJoinLobby);
+            int err = await SteamHelper.JoinLobby(zoneScene, id, lobbyId);
+            if (err != ErrorCode.ERR_Success)
+            {
+                Log.Info(err.ToString());
+            }
+
+            EnterMapHelper.EnterMapAsync(zoneScene).Coroutine();
+            Game.EventSystem.Publish(new EventType.CreateLobbyFinish { ZoneScene = zoneScene });
+            await UIHelper.Remove(self.ZoneScene(), UIType.UIJoinLobby);
         }
     }
 }

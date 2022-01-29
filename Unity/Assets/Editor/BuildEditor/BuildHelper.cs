@@ -9,7 +9,7 @@ namespace ET
     {
         private const string relativeDirPrefix = "../Release";
 
-        public static string BuildFolder = "../../Mirror-Test/Build/ET-P2P/ET_Data/StreamingAssets";
+        public static string BuildFolder = "../../SVN/ET-P2P/ET_Data/StreamingAssets";
 
         public static void Build(PlatformType type, BuildAssetBundleOptions buildAssetBundleOptions, BuildOptions buildOptions, bool isBuildExe, bool isContainAB, bool clearFolder)
         {

@@ -51,7 +51,7 @@ namespace ET
         private const string jsonDir = "./Json/{0}";
         
         private const string clientProtoDir = "../Unity/Assets/Bundles/Config";
-        private const string serverProtoDir = "../Config";
+        private const string serverProtoDir = "../../SVN/ET-P2P/Config";
         
         public static void Export()
         {

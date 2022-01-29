@@ -254,7 +254,7 @@ namespace ET
             Entity component = null;
             this.allEntities.TryGetValue(instanceId, out component);
             return component;
-        }
+         }
 
         public bool IsRegister(long instanceId)
         {

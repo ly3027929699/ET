@@ -2,8 +2,9 @@
 
 namespace ET
 {
-    public static class PathHelper
-    {     /// <summary>
+    public static partial class PathHelper
+    {
+        /// <summary>
         ///应用程序外部资源路径存放路径(热更新资源路径)
         /// </summary>
         public static string AppHotfixResPath
@@ -16,6 +17,7 @@ namespace ET
                 {
                     path = $"{Application.persistentDataPath}/{game}/";
                 }
+
                 return path;
             }
         }
@@ -43,7 +45,29 @@ namespace ET
 #else
                 return Application.streamingAssetsPath;
 #endif
+            }
+        }
 
+        public static string ServerExePath
+        {
+            get
+            {
+#if UNITY_EDITOR
+                return "../../SVN/ET-P2P/BIN/Server.exe";
+#else
+                return "./BIN/Server.exe";
+#endif
+            }
+        }
+        public static string ServerExeDirPath
+        {
+            get
+            {
+#if UNITY_EDITOR
+                return "../../SVN/ET-P2P/BIN";
+#else
+                return "./BIN";
+#endif
             }
         }
     }

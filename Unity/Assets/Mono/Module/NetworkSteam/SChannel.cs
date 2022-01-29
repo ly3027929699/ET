@@ -135,7 +135,7 @@ namespace ET
                 try
                 {
                     OnConnectionFailed(steamID);
-                    // CloseP2PSessionWithUser(steamID);
+                    CloseP2PSessionWithUser(steamID);
                 }
                 catch (Exception e)
                 {
@@ -256,6 +256,7 @@ namespace ET
                         //avoid to recive last disconnect message
                         return;
                     }
+
                     this.isConnected = false;
                     this.OnError(ErrorCore.ERR_SteamDisconnectByServer);
                     Log.Info($"Client with SteamID {clientSteamID} closed.");
@@ -291,8 +292,9 @@ namespace ET
                 }
                 case ServiceType.Outer:
                 {
-                    byte[] bytes = new byte[stream.Length];
-                    Array.Copy(stream.GetBuffer(), bytes, bytes.Length);
+                    ushort messageSize = (ushort) (stream.Length - stream.Position);
+                    byte[] bytes = new byte[messageSize];
+                    Array.Copy(stream.GetBuffer(), stream.Position, bytes, 0, messageSize);
                     this.queue.Enqueue(bytes);
 
                     if (this.isConnected)

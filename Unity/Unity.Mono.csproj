@@ -65,9 +65,11 @@
      <Compile Include="Assets\Mono\Module\Network\AChannel.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonIdAttribute.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonIgnoreExtraElementsAttribute.cs" />
+     <Compile Include="Assets\Mono\Helper\SteamCoreHelper.cs" />
      <Compile Include="Assets\Mono\Core\HashSetComponent.cs" />
      <Compile Include="Assets\Mono\Core\Helper\FileHelper.cs" />
      <Compile Include="Assets\Mono\Core\ThreadSynchronizationContext.cs" />
+     <Compile Include="Assets\Mono\MonoBehaviour\SingleLobbyButton.cs" />
      <Compile Include="Assets\Mono\Module\NetworkSteam\SService.cs" />
      <Compile Include="Assets\Mono\Module\NetworkSteam\SChannel.cs" />
      <Compile Include="Assets\Mono\Module\Message\RpcException.cs" />
@@ -81,6 +83,7 @@
      <Compile Include="Assets\Mono\Core\TimeHelper.cs" />
      <Compile Include="Assets\Mono\CodeLoader.cs" />
      <Compile Include="Assets\Mono\Core\Log\Log.cs" />
+     <Compile Include="Assets\Mono\MonoBehaviour\Platformer2DUserControl.cs" />
      <Compile Include="Assets\Mono\Core\MultiDictionary.cs" />
      <Compile Include="Assets\Mono\MonoBehaviour\Test.cs" />
      <Compile Include="Assets\Mono\Module\Network\KChannel.cs" />
@@ -95,12 +98,14 @@
      <Compile Include="Assets\Mono\Core\Helper\ZipHelper.cs" />
      <Compile Include="Assets\Mono\Helper\PathHelper.cs" />
      <Compile Include="Assets\Mono\Core\Helper\MD5Helper.cs" />
+     <Compile Include="Assets\Mono\MonoBehaviour\Camera2DFollow.cs" />
      <Compile Include="Assets\Mono\Module\Network\AService.cs" />
      <Compile Include="Assets\Mono\Core\Helper\ObjectHelper.cs" />
      <Compile Include="Assets\Mono\ILRuntime\ILHelper.cs" />
      <Compile Include="Assets\Mono\ILRuntime\IAsyncStateMachineAdaptor.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonElementAttribute.cs" />
      <Compile Include="Assets\Mono\Module\NetworkTCP\TService.cs" />
+     <Compile Include="Assets\Mono\MonoBehaviour\CameraFollow.cs" />
      <Compile Include="Assets\Mono\Module\Network\KService.cs" />
      <Compile Include="Assets\Mono\Core\Log\UnityLogger.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonDefaultValueAttribute.cs" />
@@ -113,13 +118,8 @@
      <Compile Include="Assets\Mono\Core\Helper\StringHelper.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonIgnoreIfNullAttribute.cs" />
      <Compile Include="Assets\Mono\Module\Network\ErrorCore.cs" />
-     <Compile Include="Assets\Mono\Define.cs" />
-     <Compile Include="Assets\Mono\MonoBehaviour\SingleLobbyButton.cs" />
-     <Compile Include="Assets\Mono\MonoBehaviour\Camera2DFollow.cs" />
-     <Compile Include="Assets\Mono\MonoBehaviour\CameraFollow.cs" />
      <Compile Include="Assets\Mono\MonoBehaviour\PlatformerCharacter2D.cs" />
-     <Compile Include="Assets\Mono\MonoBehaviour\Platformer2DUserControl.cs" />
-     <Compile Include="Assets\Mono\Helper\SteamCoreHelper.cs" />
+     <Compile Include="Assets\Mono\Define.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -361,17 +361,17 @@
      <Reference Include="UnityEditor.WindowsStandalone.Extensions">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
-     <Reference Include="CommandLine">
-     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/CommandLine.dll</HintPath>
-     </Reference>
-     <Reference Include="ICSharpCode.SharpZipLib">
-     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+     <Reference Include="Facepunch.Steamworks.Win64">
+     <HintPath>E:/Unity/ET/Unity/Assets/ThirdParty/Facepunch.Steamworks/Facepunch.Steamworks.Win64.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Unsafe">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.Unsafe.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Mdb">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="CommandLine">
+     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/CommandLine.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Pdb">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Pdb.dll</HintPath>
@@ -382,8 +382,8 @@
      <Reference Include="Unity.Burst.Cecil.Rocks">
      <HintPath>E:/Unity/ET/Unity/Library/PackageCache/com.unity.burst@1.6.0/Unity.Burst.CodeGen/Unity.Burst.Cecil.Rocks.dll</HintPath>
      </Reference>
-     <Reference Include="Facepunch.Steamworks.Win64">
-     <HintPath>E:/Unity/ET/Unity/Assets/ThirdParty/Facepunch.Steamworks/Facepunch.Steamworks.Win64.dll</HintPath>
+     <Reference Include="ICSharpCode.SharpZipLib">
+     <HintPath>E:/Unity/ET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>E:/UnityEditor/2021.2.7f1c1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll</HintPath>

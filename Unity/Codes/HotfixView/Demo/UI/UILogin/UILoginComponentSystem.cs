@@ -24,12 +24,12 @@ namespace ET
     {
         public static void OnStartHost(this UILoginComponent self)
         {
-            LoginHelper.StartHost(self.ZoneScene());
+            GameHomePageHelper.StartHost(self.ZoneScene());
         }
 
         public static void OnStartClient(this UILoginComponent self)
         {
-            LoginHelper.StartClient(self.ZoneScene());
+            GameHomePageHelper.StartClient(self.ZoneScene());
         }
     }
 }

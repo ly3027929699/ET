@@ -26,7 +26,7 @@ namespace ET
                 {
                     FileName = exe,
                     Arguments = arguments,
-                    CreateNoWindow = true,
+                    CreateNoWindow = false,
                     UseShellExecute = useShellExecute,
                     WorkingDirectory = workingDirectory,
                     RedirectStandardOutput = redirectStandardOutput,

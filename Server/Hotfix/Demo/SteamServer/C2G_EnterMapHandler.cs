@@ -19,14 +19,12 @@ namespace ET
             Unit unit = UnitFactory.Create(scene, player.Id, UnitType.Player);
             unit.AddComponent<UnitGateComponent, long>(session.InstanceId);
 
-            // StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "Map1");
+            StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "GameTest");
             response.MyId = player.Id;
             reply();
 
-            Scene targetScene = await SceneFactory.Create(session.DomainScene(), "GameTest", SceneType.Map);
-
             // 开始传送
-            await UnitTransferHelper.Transfer(unit, targetScene);
+            await TransferHelper.Transfer(unit,startSceneConfig.InstanceId,"GameTest");
         }
     }
 }
