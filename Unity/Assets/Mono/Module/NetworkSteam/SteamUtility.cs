@@ -10,7 +10,7 @@ namespace ET
         {
             if (SteamNetworking.IsP2PPacketAvailable(channel))
             {
-               var  _packect= SteamNetworking.ReadP2PPacket(channel);
+                var _packect = SteamNetworking.ReadP2PPacket(channel);
 
                 if (_packect != null)
                 {
@@ -20,6 +20,19 @@ namespace ET
             }
 
             packet = default;
+            return false;
+        }
+
+        public static bool CanReceive(out SChannel.MessageInfo messageInfo, int channel)
+        {
+            if (SteamNetworking.IsP2PPacketAvailable(channel))
+            {
+                messageInfo = new SChannel.MessageInfo(0);
+                return SteamNetworking.ReadP2PPacket(messageInfo.messageInfo.bytes, ref messageInfo.messageSize, ref messageInfo.messageInfo.steamId,
+                    channel);
+            }
+
+            messageInfo = default;
             return false;
         }
     }
